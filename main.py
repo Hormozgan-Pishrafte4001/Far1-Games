@@ -75,22 +75,23 @@ class XOGame:
         return False
 
 
-game = XOGame()
-turn = random.choice(("X", "O"))
-while not game.end_of_game():
-    x, y = input(f"{turn}> ").strip().split()
-    x, y = int(x), int(y)
-    try:
-        game.place(x, y, turn)
-    except ValueError as e:
-        print(e)
-    print(game.pretty_board())
-    turn = "X" if turn == "O" else "O"
-    # ^ if turn is "O" it should become "X" and vice versa
+if __name__ == "__main__":
+    game = XOGame()
+    turn = random.choice(("X", "O"))
+    while not game.end_of_game():
+        x, y = input(f"{turn}> ").strip().split()
+        x, y = int(x), int(y)
+        try:
+            game.place(x, y, turn)
+        except ValueError as e:
+            print(e)
+        print(game.pretty_board())
+        turn = "X" if turn == "O" else "O"
+        # ^ if turn is "O" it should become "X" and vice versa
 
-if game.has_won("X"):
-    print("Player X has won")
-elif game.has_won("O"):
-    print("Player O has won")
-else:
-    print("Draw!")
+    if game.has_won("X"):
+        print("Player X has won")
+    elif game.has_won("O"):
+        print("Player O has won")
+    else:
+        print("Draw!")
